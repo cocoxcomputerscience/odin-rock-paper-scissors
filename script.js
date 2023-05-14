@@ -1,7 +1,7 @@
 function getComputerChoice() {
     const choiceArray = ["rock", "paper", "scissors"];
 
-    // generates a random number between 0-2
+    // generates a random integer between 0-2
     let randomElement = Math.floor((Math.random() * choiceArray.length));
 
     return choiceArray[randomElement];
@@ -11,7 +11,7 @@ function getPlayerChoice(gameNumber) {
     let playerSelection = prompt(`Rock Paper Scissor. Round ${gameNumber}. Enter your choice: `, "Rock");
     playerSelection = playerSelection.toLowerCase();
 
-    // While player selection != (rock or paper or scissors)
+    // checks user input. Will loop and keep looping until user inputs valid choice
     while(!(playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors")) {
         playerSelection = prompt(`Invalid choice. Round ${gameNumber}. Re-enter your choice: `, "Rock");
         playerSelection = playerSelection.toLowerCase();
