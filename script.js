@@ -32,7 +32,7 @@ function playRound(playerSelection, computerSelection) {
     }
 };
 
-function overallWinner(playerWinCount, computerWinCount) {
+function calculateWinner(playerWinCount, computerWinCount) {
     if (playerWinCount > computerWinCount) {
         console.log("The overall winner is you!");
     } else if(playerWinCount < computerWinCount) {
@@ -62,7 +62,7 @@ function game() {
     }
 
     // output winner of all rounds
-    console.log(overallWinner(playerWinCount, computerWinCount));
+    console.log(calculateWinner(playerWinCount, computerWinCount));
 };
 
 game();
