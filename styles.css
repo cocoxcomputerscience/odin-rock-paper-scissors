@@ -104,12 +104,22 @@ button {
     gap: 50px;
 }
 
+#scoreboard-you, 
+#scoreboard-ai {
+    text-align: center;
+}
+
 #scoredboard-logic {
     min-width: 200px;
+}
+
+#result-text {
+    font-size: 20px;
 }
 
 /* footer */
 #footer {
     margin-top: auto;
     text-align: center;
+    font-size: 16px;
 }
