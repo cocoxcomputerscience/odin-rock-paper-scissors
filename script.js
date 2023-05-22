@@ -1,4 +1,4 @@
-function getComputerChoice() {
+/*function getComputerChoice() {
     const choiceArray = ["rock", "paper", "scissors"];
 
     // generates a random integer between 0-2
@@ -65,4 +65,4 @@ function game() {
     console.log(calculateWinner(playerWinCount, computerWinCount));
 };
 
-game();
+game();*/

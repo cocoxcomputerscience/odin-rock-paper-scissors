@@ -3,10 +3,56 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="./styles.css">
         <script src="./script.js"></script>
     </head>
 
     <body>
-        
+        <header id="header">
+            <img id="header-decor" src="./images/header-decor.svg" alt="dual swords">
+            <h1>SWORD AXE LANCE</h1>
+            <img id="header-decor" src="./images/header-decor.svg" alt="dual swords">
+        </header>
+        <main>
+            <section id="rules">
+                <h2>RULES</h2>
+                <ul>
+                    <li>CHOOSE YOUR WEAPON OF CHOICE</li>
+                    <li>SWORD > AXE > LANCE > SWORD</li>
+                    <li>WHEN 5 POINTS ARE REACHED, THE GAME IS OVER</li>
+                </ul>
+            </section>
+    
+            <section id="weapons">
+                <!--Images from: https://unsplash.com/photos/sYEyCLSWSY4?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink-->
+                <button id="sword"></button>
+                <button id="axe"></button>
+                <button id="lance"></button>
+            </section>
+    
+            <section id="result">
+                <h2>RESULT</h2>
+                <div id="scoreboard-container">
+                    <div id="scoreboard">
+                        <div id="scoreboard-you">
+                            <p>YOU</p>
+                            <p>0</p>
+                        </div>
+                        <div id="scoreboard-ai">
+                            <p>AI</p>
+                            <p>0</p>
+                        </div>
+                    </div>
+                    <div id="scoreboard-logic">
+                        <p>YOU CHOSE:</p>
+                        <p>AI CHOSE:</p>
+                    </div>
+                </div>
+                <p>_____ WINS THIS ROUND!</p>
+            </section>
+        </main>
+        <footer id="footer">
+            <p>&#169; Copyright 2023 cocoxcomputerscience@gmail.com</p>
+        </footer>
     </body>
 </html>

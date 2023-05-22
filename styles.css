@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    border: 20px double #903749;
+    background-color: #2B2E4A;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* header */
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#header-decor {
+    display: inline;
+    width: 90px;
+    height: 90px;
+}
+
+h1 {
+    display: inline;
+    text-align: center;
+    font-size: 50px;
+}
+
+/* rules section */
+#rules {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    margin-bottom: 40px;
+    gap: 10px;
+}
+
+ul {
+    list-style: square;
+}
+
+/* weapons section */
+#weapons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+button {
+    background-size: 200px;
+    height: 200px;
+    width: 200px;
+    border-radius: 20%;
+    background-color: #E84545;
+}
+
+#sword {
+    background-image: url("./images/sword.svg");
+}
+
+#axe {
+    background-image: url("./images/axe.svg");
+}
+
+#lance {
+    background-image: url("./images/lance.svg");
+}
+
+/* results section */
+#result {
+    border: 10px dotted #53354A;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+#result h2 {
+    font-size: 30px;
+}
+
+#scoreboard-container {
+    display: flex;
+    gap: 100px;
+    font-size: 20px;
+}
+
+#scoreboard {
+    min-width: 200px;
+    display: flex;
+    gap: 50px;
+}
+
+#scoredboard-logic {
+    min-width: 200px;
+}
+
+/* footer */
+#footer {
+    margin-top: auto;
+    text-align: center;
+}
