@@ -1,5 +1,5 @@
-/*function getComputerChoice() {
-    const choiceArray = ["rock", "paper", "scissors"];
+function getComputerChoice() {
+    const choiceArray = ["sword", "axe", "lance"];
 
     // generates a random integer between 0-2
     let randomElement = Math.floor((Math.random() * choiceArray.length));
@@ -7,62 +7,76 @@
     return choiceArray[randomElement];
 };
 
-function getPlayerChoice(gameNumber) {
-    let playerSelection = prompt(`Rock Paper Scissor. Round ${gameNumber}. Enter your choice: `, "Rock");
-    playerSelection = playerSelection.toLowerCase();
-
-    // checks user input. Will loop and keep looping until user inputs valid choice
-    while(!(playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors")) {
-        playerSelection = prompt(`Invalid choice. Round ${gameNumber}. Re-enter your choice: `, "Rock");
-        playerSelection = playerSelection.toLowerCase();
-    }
-
-    return playerSelection;
-};
-
-function playRound(playerSelection, computerSelection) {
+// also updates wincount variable
+function calculateWinner(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        return `It's a tie: you both chose ${playerSelection}!`;
-    } else if (playerSelection === "rock" && computerSelection === "scissors" ||
-               playerSelection === "scissors" && computerSelection === "paper" ||
-               playerSelection === "paper" && computerSelection === "rock") {
-        return `You win: ${playerSelection} beats ${computerSelection}!`;
+        return "no one";
+    } else if (playerSelection === "sword" && computerSelection === "axe" ||
+               playerSelection === "axe" && computerSelection === "lance" ||
+               playerSelection === "lance" && computerSelection === "sword") {
+        playerWinCount++;
+        return "player";
     } else {
-        return `You lose: ${computerSelection} beats ${playerSelection}!`;
-    }
-};
-
-function calculateWinner(playerWinCount, computerWinCount) {
-    if (playerWinCount > computerWinCount) {
-        console.log("The overall winner is you!");
-    } else if(playerWinCount < computerWinCount) {
-        console.log("The overall winner is the computer!");
-    } else {
-        console.log("The overall winner is no one!");
+        computerWinCount++;
+        return "computer";
     }
 }
 
-function game() {
-    let playerWinCount = 0;
-    let computerWinCount = 0;
+function playRound() {
+    playerSelection = this.id;
+    computerSelection = getComputerChoice();
 
-    // playing game 5 times
-    for(let i = 0; i < 5; i++) {
-        let roundResult = playRound(getPlayerChoice(i + 1), getComputerChoice());
+    // winner can equal "player", "computer", or "no one"
+    let winner = calculateWinner(playerSelection, computerSelection);
 
-        // output the winner of the round
-        console.log(roundResult);
-
-        // tallying up who won for each round
-        if (roundResult.slice(0, 7) === "You win") {
-            ++playerWinCount;
-        } else if (roundResult.slice(0, 8) === "You lose") {
-            ++computerWinCount;
-        }
-    }
-
-    // output winner of all rounds
-    console.log(calculateWinner(playerWinCount, computerWinCount));
+    // will call function with winner as argument to update the scoreboard
+    updateScoreboard(playerSelection, computerSelection, winner);
 };
 
-game();*/
+// updates the html scoreboard
+function updateScoreboard(playerSelection, computerSelection, winner) {
+
+    playerSelectionDisplay.textContent = `YOU CHOSE: ${playerSelection.toUpperCase()}`;
+    computerSelectionDisplay.textContent = `AI CHOSE: ${computerSelection.toUpperCase()}`;
+
+    if (winner === "no one") {
+        resultText.textContent = "IT'S A TIE";
+    }
+    else {
+        playerTally.textContent = playerWinCount;
+        computerTally.textContent = computerWinCount;
+
+        // once a tally hits 5, game is over
+        if (playerWinCount === 5 || computerWinCount === 5) {
+            resultText.textContent = `THE GAME IS OVER. THE ${winner.toUpperCase()} WINS!`
+            removeListeners();
+        }
+        else {
+            resultText.textContent = `THE WINNER IS: THE ${winner.toUpperCase()}`;
+        }
+    }
+}
+
+function removeListeners() {
+    buttons.forEach(button => {
+        button.removeEventListener("click", playRound);
+    })
+}
+
+// adding click event to all the buttons
+let buttons = document.querySelectorAll("button");
+buttons.forEach(button => {
+    button.addEventListener("click", playRound);
+})
+
+// global variable for keeping track of score
+let playerWinCount = 0;
+let computerWinCount = 0;
+
+// scoreboard variables
+let playerTally = document.querySelector("#player-tally");
+let computerTally = document.querySelector("#computer-tally");
+let playerSelectionDisplay = document.querySelector("#player-selection-display");
+let computerSelectionDisplay = document.querySelector("#computer-selection-display");
+let resultText = document.querySelector("#result-text");
+let finalResultText = document.querySelector("#final-result-text");

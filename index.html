@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Rock Paper Scissors</title>
         <link rel="stylesheet" href="./styles.css">
-        <script src="./script.js"></script>
+        <script src="./script.js" defer></script>
     </head>
 
     <body>
@@ -34,21 +34,21 @@
                 <h2>RESULT</h2>
                 <div id="scoreboard-container">
                     <div id="scoreboard">
-                        <div id="scoreboard-you">
+                        <div id="scoreboard-player">
                             <h4>YOU</h4>
-                            <p>0</p>
+                            <p id="player-tally">0</p>
                         </div>
-                        <div id="scoreboard-ai">
+                        <div id="scoreboard-computer">
                             <h4>AI</h4>
-                            <p>0</p>
+                            <p id="computer-tally">0</p>
                         </div>
                     </div>
                     <div id="scoreboard-logic">
-                        <p>YOU CHOSE:</p>
-                        <p>AI CHOSE:</p>
+                        <p id="player-selection-display">YOU CHOSE:</p>
+                        <p id="computer-selection-display">AI CHOSE:</p>
                     </div>
                 </div>
-                <p id="result-text">_____ WINS THIS ROUND!</p>
+                <p id="result-text"></p>
             </section>
         </main>
         <footer id="footer">
