@@ -7,7 +7,6 @@ function getComputerChoice() {
     return choiceArray[randomElement];
 };
 
-// also updates wincount variable
 function calculateWinner(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return "no one";
@@ -29,7 +28,7 @@ function playRound() {
     // winner can equal "player", "computer", or "no one"
     let winner = calculateWinner(playerSelection, computerSelection);
 
-    // will call function with winner as argument to update the scoreboard
+    // will call function with the player choice, computer choice, and the winner as arguments to update the scoreboard
     updateScoreboard(playerSelection, computerSelection, winner);
 };
 
@@ -50,6 +49,8 @@ function updateScoreboard(playerSelection, computerSelection, winner) {
         if (playerWinCount === 5 || computerWinCount === 5) {
             resultText.textContent = `THE GAME IS OVER. THE ${winner.toUpperCase()} WINS!`
             removeListeners();
+            // unhide reset button
+            resetButton.removeAttribute("hidden");
         }
         else {
             resultText.textContent = `THE WINNER IS: THE ${winner.toUpperCase()}`;
@@ -63,17 +64,36 @@ function removeListeners() {
     })
 }
 
-// adding click event to all the buttons
-let buttons = document.querySelectorAll("button");
+// adding click event to all the weapon buttons
+let buttons = document.querySelectorAll("#weapons button");
 buttons.forEach(button => {
     button.addEventListener("click", playRound);
 })
 
-// global variable for keeping track of score
+// adding click event to reset button
+let resetButton = document.querySelector("#reset-button");
+resetButton.addEventListener("click", () => {
+    // reset all variables and textContents
+    playerWinCount = 0;
+    computerWinCount = 0;
+    playerTally.textContent = 0;
+    computerTally.textContent = 0;
+    playerSelectionDisplay.textContent = "YOU CHOSE:";
+    computerSelectionDisplay.textContent = "AI CHOSE:";
+    resultText.textContent = "";
+
+    // hiding reset button and re-adding event listeners for weapon buttons
+    resetButton.setAttribute("hidden", true);
+    buttons.forEach(button => {
+        button.addEventListener("click", playRound);
+    })
+})
+
+// global variables for keeping track of score
 let playerWinCount = 0;
 let computerWinCount = 0;
 
-// scoreboard variables
+// result section variables
 let playerTally = document.querySelector("#player-tally");
 let computerTally = document.querySelector("#computer-tally");
 let playerSelectionDisplay = document.querySelector("#player-selection-display");
