@@ -32,7 +32,7 @@ function playRound(e) {
 
     if (result === win) playerScore++;
     if (result === lose) playerScore++;
-    resultText.textContent = `${playerScore}-${computerScore}\n${result}`;
+    roundResult.textContent = `${playerScore}-${computerScore}\n${result}`;
 
     if (playerScore === 5 || computerScore === 5) {
         endGame();
@@ -40,23 +40,38 @@ function playRound(e) {
 }
 
 function endGame() {
-    let endResult = document.createElement("div");
-    resultText.appendChild(endResult);
     endResult.textContent = playerScore > computerScore ? "Congratulations, you win the game!" : "Sorry, the computer won this game!";
 
     // remove click events from the choices
     choices.forEach(choice => choice.removeEventListener("click", playRound));
+
+    // un-hiding the hidden button
+    newGameButton.style.display = "block";
 }
 
 // global counter for overall score
 let playerScore = 0;
 let computerScore = 0;
+let roundResult = document.querySelector("#round-result");
+let endResult = document.querySelector("#end-result");
 
-let resultText = document.querySelector("#result");
 let choices = document.querySelectorAll("#choices button");
 choices.forEach(choice => {
     choice.addEventListener("click", playRound);
 });
+
+let newGameButton = document.querySelector("#new-game-button")
+newGameButton.addEventListener("click", () => {
+    // resetting 
+    newGameButton.style.display = "none";
+    playerScore = 0;
+    computerScore = 0;
+    roundResult.textContent = "";
+    endResult.textContent = "";
+    choices.forEach(choice => {
+        choice.addEventListener("click", playRound);
+    });
+})
 
 // UPDATE:
 // User now clicks on one of the buttons to initiate the game
