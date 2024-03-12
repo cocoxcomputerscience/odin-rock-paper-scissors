@@ -5,10 +5,8 @@ function getComputerChoice() {
 }
 
 function playRound(e) {
-    let playerSelection = e.target.id;
+    let playerSelection = e.currentTarget.id;
     let computerSelection = getComputerChoice();
-
-    // strings for the result
     let result;
     let win = `You win! ${playerSelection} beats ${computerSelection}`;
     let lose = `You lose! ${playerSelection} loses to ${computerSelection}`;
@@ -29,77 +27,69 @@ function playRound(e) {
                 break;
         }
     }
+    displayRound(result, win, lose, playerSelection, computerSelection);
+    if (playerScore === 5 || computerScore === 5) endGame();
+}
 
-    if (result === win) playerScore++;
-    if (result === lose) playerScore++;
-    roundResult.textContent = `${playerScore}-${computerScore}\n${result}`;
-
-    if (playerScore === 5 || computerScore === 5) {
-        endGame();
-    } 
+function displayRound(result, win, lose, playerSelection, computerSelection) {
+    if (result === win) {
+        playerScore++;
+        computerHealth.textContent = `${5 - playerScore}/5`;
+        computerHealthBar.value -= 1;
+        playerChoiceBox.style.backgroundColor = "green";
+        computerChoiceBox.style.backgroundColor = "red";
+    } else if (result === lose) {
+        computerScore++;
+        playerHealth.textContent = `${5 - computerScore}/5`;
+        playerHealthBar.value -= 1; 
+        playerChoiceBox.style.backgroundColor = "red";
+        computerChoiceBox.style.backgroundColor = "green";
+    } else {
+        playerChoiceBox.style.backgroundColor = "white";
+        computerChoiceBox.style.backgroundColor = "white";
+    }
+    roundResult.textContent = `${result}`;
+    playerChoiceBox.style.backgroundImage = `url(./images/${playerSelection}.png)`;
+    computerChoiceBox.style.backgroundImage = `url(./images/${computerSelection}.png)`;
 }
 
 function endGame() {
-    endResult.textContent = playerScore > computerScore ? "Congratulations, you win the game!" : "Sorry, the computer won this game!";
-
-    // remove click events from the choices
+    gameResult.textContent = playerScore > computerScore ? "Congratulations, you win the game!" : "Sorry, the computer won this game!";
     choices.forEach(choice => choice.removeEventListener("click", playRound));
-
-    // un-hiding the hidden button
     newGameButton.style.display = "block";
 }
 
-// global counter for overall score
-let playerScore = 0;
-let computerScore = 0;
-let roundResult = document.querySelector("#round-result");
-let endResult = document.querySelector("#end-result");
-
-let choices = document.querySelectorAll("#choices button");
-choices.forEach(choice => {
-    choice.addEventListener("click", playRound);
-});
-
-let newGameButton = document.querySelector("#new-game-button")
-newGameButton.addEventListener("click", () => {
-    // resetting 
+function newGame() {
     newGameButton.style.display = "none";
     playerScore = 0;
     computerScore = 0;
     roundResult.textContent = "";
-    endResult.textContent = "";
+    gameResult.textContent = "";
     choices.forEach(choice => {
         choice.addEventListener("click", playRound);
     });
-})
+    playerHealthBar.value = 5;
+    computerHealthBar.value = 5; 
+    playerHealth.textContent = "5/5";
+    computerHealth.textContent = "5/5";
+    playerChoiceBox.style.background = "none";
+    computerChoiceBox.style.background = "none";
+}
 
-// UPDATE:
-// User now clicks on one of the buttons to initiate the game
-// Display the running score and announce a winner once 5 points has been met
-// playRound function will be the event handler for when a button is clicked
+let playerScore = 0;
+let computerScore = 0;
+let roundResult = document.querySelector("#round-result");
+let gameResult = document.querySelector("#game-result");
+let choices = document.querySelectorAll("#choice-container button");
+let newGameButton = document.querySelector("#new-game-button");
+let playerHealth = document.querySelector("#player-hp");
+let playerHealthBar = document.querySelector("#player-hp-bar");
+let computerHealth = document.querySelector("#computer-hp");
+let computerHealthBar = document.querySelector("#computer-hp-bar");
+let playerChoiceBox = document.querySelector("#player-choice");
+let computerChoiceBox = document.querySelector("#computer-choice");
 
-/*
-HTML
-    1. add 3 buttons for the choices
-    2. add new game button
-
-
-JS
-event handler
-    1. add event listeners to all the buttons using event delegation
-    2. or use for...of or for each to 
-
-playRound(e)
-    1. playRound will now only have event object being passed as argument
-       let choice = event.target.id;
-    2. will call a new function if a player reaches 5 points
-
-endGame()
-    1. show the final result string (don't display round result maybe??)
-    2. remove listeners from the choice buttons
-
-LATER
-EXTRA newGame()
-    1. re-eneable event listeners for the choices buttons
-    2. clear the string result
-*/
+choices.forEach(choice => {
+    choice.addEventListener("click", playRound);
+});
+newGameButton.addEventListener("click", newGame);
