@@ -34,19 +34,17 @@ function playRound(e) {
 function displayRound(result, win, lose, playerSelection, computerSelection) {
     if (result === win) {
         playerScore++;
-        computerHealth.textContent = `${5 - playerScore}/5`;
         computerHealthBar.value -= 1;
         playerChoiceBox.style.backgroundColor = "green";
         computerChoiceBox.style.backgroundColor = "red";
     } else if (result === lose) {
         computerScore++;
-        playerHealth.textContent = `${5 - computerScore}/5`;
         playerHealthBar.value -= 1; 
         playerChoiceBox.style.backgroundColor = "red";
         computerChoiceBox.style.backgroundColor = "green";
     } else {
-        playerChoiceBox.style.backgroundColor = "white";
-        computerChoiceBox.style.backgroundColor = "white";
+        playerChoiceBox.style.backgroundColor = "yellow";
+        computerChoiceBox.style.backgroundColor = "yellow";
     }
     roundResult.textContent = `${result}`;
     playerChoiceBox.style.backgroundImage = `url(./images/${playerSelection}.png)`;
@@ -70,8 +68,6 @@ function newGame() {
     });
     playerHealthBar.value = 5;
     computerHealthBar.value = 5; 
-    playerHealth.textContent = "5/5";
-    computerHealth.textContent = "5/5";
     playerChoiceBox.style.background = "none";
     computerChoiceBox.style.background = "none";
 }
@@ -82,9 +78,7 @@ let roundResult = document.querySelector("#round-result");
 let gameResult = document.querySelector("#game-result");
 let choices = document.querySelectorAll("#choice-container button");
 let newGameButton = document.querySelector("#new-game-button");
-let playerHealth = document.querySelector("#player-hp");
 let playerHealthBar = document.querySelector("#player-hp-bar");
-let computerHealth = document.querySelector("#computer-hp");
 let computerHealthBar = document.querySelector("#computer-hp-bar");
 let playerChoiceBox = document.querySelector("#player-choice");
 let computerChoiceBox = document.querySelector("#computer-choice");

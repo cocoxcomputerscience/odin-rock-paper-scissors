@@ -1,22 +1,23 @@
-/* color palette 
-    #ede0d4
-    #e6ccb2
-    #ddb892
-    #b08968
-    #7f5539
-    #9c6644
-*/
-
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-h1 {
-    text-align: center;
+/* header */
+header {
     background-color: yellow;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 40px;
 }
 
 /* choice container */
@@ -68,15 +69,26 @@ h1 {
 
 .hp-stats {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    gap: 2px;
 }
 
 progress {
+    -webkit-appearance: none;
     width: 60px;
     height: 10px;
 }
 
+progress::-webkit-progress-bar {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+progress::-webkit-progress-value {
+    background-color: green;
+    border-radius: 20px;
+}
 
 #player-choice,
 #computer-choice {
