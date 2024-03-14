@@ -8,8 +8,8 @@ function playRound(e) {
     let playerSelection = e.currentTarget.id;
     let computerSelection = getComputerChoice();
     let result;
-    let win = `You win! ${playerSelection} beats ${computerSelection}`;
-    let lose = `You lose! ${playerSelection} loses to ${computerSelection}`;
+    let win = `You win! ${playerSelection.at(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection}`;
+    let lose = `You lose! ${playerSelection.at(0).toUpperCase() + playerSelection.slice(1)} loses to ${computerSelection}`;
     let tie = `Tie! You both chose ${playerSelection}`;
 
     if (playerSelection === computerSelection) {
@@ -52,7 +52,7 @@ function displayRound(result, win, lose, playerSelection, computerSelection) {
 }
 
 function endGame() {
-    gameResult.textContent = playerScore > computerScore ? "Congratulations, you win the game!" : "Sorry, the computer won this game!";
+    gameResult.textContent = playerScore > computerScore ? "Congratulations, you win the game!" : "Sorry, the computer wins the game!";
     choices.forEach(choice => choice.removeEventListener("click", playRound));
     newGameButton.style.display = "block";
 }
@@ -68,8 +68,8 @@ function newGame() {
     });
     playerHealthBar.value = 5;
     computerHealthBar.value = 5; 
-    playerChoiceBox.style.background = "none";
-    computerChoiceBox.style.background = "none";
+    playerChoiceBox.style.background = "#fb5607";
+    computerChoiceBox.style.background = "#fb5607";
 }
 
 let playerScore = 0;

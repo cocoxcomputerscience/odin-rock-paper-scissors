@@ -2,15 +2,22 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Rock, Paper, Scissors</title>
         <script src="./script.js" defer></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
         <link rel="stylesheet" href="./styles.css">
     </head>
 
     <body>
         <header>
-            <img id="logo" src="./images/rock-paper-scissors.png" alt="rock paper scissors">
-            <h1>ROCK PAPER SCISSORS</h1>
+            <div>
+                <img id="logo" src="./images/rock-paper-scissors.png" alt="rock paper scissors">
+                <h1>ROCK PAPER SCISSORS</h1>
+            </div>
+            <a href="https://www.flaticon.com/free-icons/rock-paper-scissors" id="logo-ref" title="rock paper scissors icons">
+                Rock paper scissors icons created by Freepik - Flaticon
+            </a>
         </header>
         <main>
             <section>
@@ -38,12 +45,12 @@
                         <p id="round-result"></p>
                         <p id="game-result"></p>
                     </div>
-                    <button id="new-game-button">New Game</button>
+                    <button id="new-game-button">NEW GAME</button>
                 </div>
 
                 <div id="computer-info">
                     <div class="stats">
-                        <h3>Computer:</h3>
+                        <h3>Comp:</h3>
                         <div class="hp-stats">
                             <label for="compouter-hp-bar">HP</label>
                             <progress id="computer-hp-bar" value="5" max="5"></progress>
