@@ -70,6 +70,8 @@ function newGame() {
     computerHealthBar.value = 5; 
     playerChoiceBox.style.background = "#fb5607";
     computerChoiceBox.style.background = "#fb5607";
+    playerChoiceBox.style.backgroundSize = "contain";
+    computerChoiceBox.style.backgroundSize = "contain";
 }
 
 let playerScore = 0;

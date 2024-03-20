@@ -1,4 +1,4 @@
-# odin-rock-paper-scissors2
+# odin-rock-paper-scissors
 This project is from The Odin Project and showcases the game Rock, Paper, Scissors.
 The player faces the computer and the first to reach 5 points wins.
 The player has the option to start a new game.
